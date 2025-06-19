@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+  <style>
+    body {
+      color: #454545;
+      background-color: #EEEEEE;
+      margin: 2em auto;
+      padding: 1em;
+      max-width: 35em;
+      line-height: 1.6;
+      font-family: Georgia, Times, serif;
+      font-size: 18px;
+    }
+    h1, h2, h3 { line-height: 1.2; }
+    p { font-family: Helvetica, Arial, sans-serif; }
+    code { background: white; }
+    footer { padding-top: 3em; font-size: 0.9em; color: #888; text-align: center; }
+  </style>
+</head>
+<body>
+  {{ content }}
+
+  <footer>
+    <hr>
+    <small>Theme: <code>jekyll-theme-rexyuan</code> • <a href="https://unlicense.org">Unlicense</a></small>
+  </footer>
+</body>
+</html>
