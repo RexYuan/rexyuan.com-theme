@@ -1,13 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.lang | default: 'en-US' }}">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>{{ page.title }} | {{ site.title }}</title>
-  <meta name="description" content="{{ page.excerpt | default: site.description }}">
-  <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | default: site.description }}">
+  <meta name="keywords" content="{{ site.keywords | default: 'Rex,Yuan' }}">
+  <meta name="author" content="{{ site.author.name | default: 'Rex Yuan' }}">
+  <meta name="theme-color" content="{{ site.theme_color | default: '#EEEEEE' }}">
 
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | default: site.description }}">
+  <meta property="og:locale" content="{{ site.locale | default: 'en_US' }}">
+  <meta property="og:type" content="{{ site.og_type | default: 'profile' }}">
+  <meta property="og:profile:first_name" content="{{ site.profile.first_name | default: 'Rex' }}">
+  <meta property="og:profile:last_name" content="{{ site.profile.last_name | default: 'Yuan' }}">
+  <meta property="og:profile:username" content="{{ site.profile.username | default: 'rexyuan' }}">
+  <meta property="og:profile:gender" content="{{ site.profile.gender | default: 'male' }}">
+
+  <!-- Open Graph image -->
+  <meta property="og:image" content="{{ site.og_image | absolute_url }}">
+  <meta property="og:image:secure_url" content="{{ site.og_image | absolute_url }}">
+  <meta property="og:image:type" content="{{ site.og_image_type | default: 'image/png' }}">
+  <meta property="og:image:width" content="{{ site.og_image_width | default: '1200' }}">
+  <meta property="og:image:height" content="{{ site.og_image_height | default: '630' }}">
+  <meta property="og:image:alt" content="{{ site.og_image_alt | default: 'Rex Yuan logo' }}">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">
+  <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+  <link rel="mask-icon" href="{{ '/safari-pinned-icon.svg' | relative_url }}" color="{{ site.mask_icon_color | default: '#5bbad5' }}">
+  <link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}">
+  <meta name="msapplication-TileColor" content="{{ site.ms_tile_color | default: '#00aba9' }}">
+  <meta name="theme-color" content="{{ site.theme_color | default: '#ffffff' }}">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+  <!-- Styles -->
   <style>
     body {
       color: #454545;
@@ -19,10 +54,60 @@
       font-family: Georgia, Times, serif;
       font-size: 18px;
     }
-    h1, h2, h3 { line-height: 1.2; }
-    p { font-family: Helvetica, Arial, sans-serif; }
-    code { background: white; }
-    footer { padding-top: 3em; font-size: 0.9em; color: #888; text-align: center; }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+    }
+
+    p, ul, li, a {
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
+    ul li {
+      height: auto;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    code {
+      background: white;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    blockquote {
+      border-left: 3px solid #ccc;
+      padding-left: 1em;
+      margin: 1em 0;
+      color: #555;
+      font-style: italic;
+    }
+
+    .back-link {
+      margin-top: 2em;
+      font-size: 0.95em;
+    }
+
+    .back-link a {
+      text-decoration: none;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      padding-top: 3em;
+      font-size: 0.9em;
+      color: #888;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -30,7 +115,14 @@
 
   <footer>
     <hr>
-    <small>Theme: <code>jekyll-theme-rexyuan</code> • <a href="https://unlicense.org">Unlicense</a></small>
+    <small>
+      <a href="{{ site.theme_repo | default: 'https://github.com/RexYuan/rexyuan.com-theme' }}">
+      {{ site.theme | default: 'jekyll-theme-rexyuan' }}
+      </a> &bull;
+      <a href="{{ site.theme_license_url | default: 'https://unlicense.org' }}">
+      {{ site.theme_license_name | default: 'Unlicense' }}
+      </a>
+    </small>
   </footer>
 </body>
 </html>
