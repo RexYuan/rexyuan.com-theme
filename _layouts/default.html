@@ -1,39 +1,31 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: 'en-US' }}">
+<html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>{{ page.title | default: site.title }}</title>
-  <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | default: site.description }}">
-  <meta name="keywords" content="{{ site.keywords | default: 'Rex,Yuan' }}">
-  <meta name="author" content="{{ site.author.name | default: 'Rex Yuan' }}">
 
   <!-- Open Graph -->
   <meta property="og:title" content="{{ page.title | default: site.title }}">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
-  <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | default: site.description }}">
-  <meta property="og:locale" content="{{ site.locale | default: 'en_US' }}">
-  <meta property="og:type" content="{{ site.og_type | default: 'profile' }}">
-  <meta property="og:profile:first_name" content="{{ site.profile.first_name | default: 'Rex' }}">
-  <meta property="og:profile:last_name" content="{{ site.profile.last_name | default: 'Yuan' }}">
-  <meta property="og:profile:username" content="{{ site.profile.username | default: 'rexyuan' }}">
-  <meta property="og:profile:gender" content="{{ site.profile.gender | default: 'male' }}">
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
 
   <!-- Open Graph image -->
-  <meta property="og:image" content="{{ site.og_image | absolute_url }}">
-  <meta property="og:image:secure_url" content="{{ site.og_image | absolute_url }}">
-  <meta property="og:image:type" content="{{ site.og_image_type | default: 'image/png' }}">
-  <meta property="og:image:width" content="{{ site.og_image_width | default: '1200' }}">
-  <meta property="og:image:height" content="{{ site.og_image_height | default: '630' }}">
-  <meta property="og:image:alt" content="{{ site.og_image_alt | default: 'Rex Yuan logo' }}">
+  {% if page.og_image %}
+    {% assign og_image = page.url | append: page.og_image %}
+  {% else %}
+    {% assign og_image = site.og_image %}
+  {% endif %}
+  <meta property="og:image" content="{{ og_image | absolute_url }}">
+  <meta property="og:image:secure_url" content="{{ og_image | absolute_url }}">
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">
   <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
-  <link rel="mask-icon" href="{{ '/safari-pinned-icon.svg' | relative_url }}" color="{{ site.mask_icon_color | default: '#5bbad5' }}">
+  <link rel="mask-icon" href="{{ '/safari-pinned-tab.svg' | relative_url }}" color="{{ site.mask_icon_color | default: '#5bbad5' }}">
   <link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}">
   <meta name="msapplication-TileColor" content="{{ site.ms_tile_color | default: '#00aba9' }}">
   <meta name="theme-color" content="{{ site.theme_color | default: '#ffffff' }}">
@@ -204,11 +196,11 @@
       font-size: 0.95em;
     }
 
-    footer a, .back-link a {
+    footer a, .back-link a, main ul li a {
       text-decoration: none;
     }
 
-    footer a:hover, .back-link a:hover {
+    footer a:hover, .back-link a:hover, main ul li a:hover {
       text-decoration: underline;
     }
 
