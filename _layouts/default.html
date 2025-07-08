@@ -145,6 +145,23 @@
       white-space: pre;
     }
 
+    del, s, strike {
+      color: #333;
+      text-decoration: line-through;
+      text-decoration-thickness: 1.4px;
+      text-decoration-color: currentColor;
+      text-decoration-skip-ink: auto;
+    }
+
+    h1 del, h2 del, h3 del,
+    h1 s, h2 s, h3 s,
+    h1 strike, h2 strike, h3 strike {
+      text-decoration-thickness: 2px;
+      text-decoration-color: #333;
+      text-underline-offset: 0.2em;
+      text-decoration-skip-ink: none; /* prevent weird gaps in caps and symbols */
+    }
+
     kbd {
       font-family: monospace;
       font-size: 0.9em;
