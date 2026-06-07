@@ -88,3 +88,25 @@
 .highlight .ss {
   color: #859900;
 }
+
+.button-wrapper {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.6em 1.4em;
+  border-radius: 999px;
+  background: #e0e0e0;        /* clearly distinct from #eeeeee */
+  color: #111;                /* strong, readable text */
+  text-decoration: none;
+  font: 500 1.05em system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.button:hover {
+  background: #d0d0d0;
+  color: #000;
+}

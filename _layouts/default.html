@@ -21,14 +21,33 @@
   <meta property="og:image:secure_url" content="{{ og_image | absolute_url }}">
 
   <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">
-  <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
-  <link rel="mask-icon" href="{{ '/safari-pinned-tab.svg' | relative_url }}" color="{{ site.mask_icon_color | default: '#5bbad5' }}">
-  <link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}">
-  <meta name="msapplication-TileColor" content="{{ site.ms_tile_color | default: '#00aba9' }}">
-  <meta name="theme-color" content="{{ site.theme_color | default: '#ffffff' }}">
+  {% if site.pwa.apple_touch_icon %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.pwa.apple_touch_icon | relative_url }}">
+  {% endif %}
+  {% if site.pwa.favicon_32 %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.pwa.favicon_32 | relative_url }}">
+  {% endif %}
+  {% if site.pwa.favicon_16 %}
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ site.pwa.favicon_16 | relative_url }}">
+  {% endif %}
+  {% if site.pwa.manifest %}
+    <link rel="manifest" href="{{ site.pwa.manifest | relative_url }}">
+  {% endif %}
+  {% if site.pwa.mask_icon and site.pwa.mask_icon_color %}
+    <link rel="mask-icon" href="{{ site.pwa.mask_icon | relative_url }}" color="{{ site.pwa.mask_icon_color }}">
+  {% endif %}
+  {% if site.pwa.favicon_ico %}
+    <link rel="shortcut icon" href="{{ site.pwa.favicon_ico | relative_url }}">
+  {% endif %}
+  {% if site.pwa.ms_tile_color %}
+    <meta name="msapplication-TileColor" content="{{ site.pwa.ms_tile_color }}">
+  {% endif %}
+  {% if site.pwa.ms_config_path %}
+    <meta name="msapplication-config" content="{{ site.pwa.ms_config_path | relative_url }}" />
+  {% endif %}
+  {% if site.pwa.theme_color %}
+    <meta name="theme-color" content="{{ site.pwa.theme_color }}">
+  {% endif %}
 
   <!-- Canonical -->
   <link rel="canonical" href="{{ page.url | absolute_url }}">
